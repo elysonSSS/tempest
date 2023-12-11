@@ -32,6 +32,14 @@ class UserCreationForm(UserCreationForm):
     email = forms.CharField(widget=forms.EmailInput(
         attrs={"required": True, "Placeholder": "E-mail", 'autocomplete': 'username', 'class': 'form-control input'}))
 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_active = False
+
+        if commit:
+            user.save()
+        return user
+
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
