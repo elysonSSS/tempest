@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <title>Login</title>
+    <title>Entrar | Tempest</title>
 </head>
 <body>
     <div class="row">
-    <div class="col-md-6 mx-auto p-0">
+    <div class="col-md-4 mx-auto p-0">
         <div class="card">
             <div class="login-box">
                 <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Entre</label> <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Cadastre-se</label>
@@ -26,7 +26,7 @@
                             <div class="group"> {{loginForm.password}}
 					  <small class="login_password_error text-danger"></small> </div>
 
-                            <div class="group"> <input type="submit" value="Login" id="login" name="login" class="button">
+                            <div class="group"> <input type="submit" value="Entrar" id="login" name="login" class="button">
 					</form>
                     </div>
                             <div class="hr"></div>
@@ -59,14 +59,13 @@
                         {{userCreation.password2.errors|striptags}} </small></div>
 
 
-                            <div class="group"> <input type="submit" class="button" value="Sign Up" id="reg" name="reg_form"> </div>
+                            <div class="group"> <input type="submit" class="button" value="Cadastrar" id="reg" name="reg_form"> </div>
                             </form>
 
                         <div>
                         <div class="msg"></div>
                         </div>
 
-                            <div class="hr"></div>
                             <div class="foot"> <label for="tab-1">Já é cadastrado?</label> </div>
                         </div>
                     </div>

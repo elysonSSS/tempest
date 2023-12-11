@@ -14,23 +14,23 @@ def validete_username(value):
 
 class UserCreationForm(UserCreationForm):
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput(
-        attrs={"placeholder": "Password", 'autocomplete': 'new-password', 'class': 'form-control input'}),
+        attrs={"placeholder": "Senha", 'autocomplete': 'new-password', 'class': 'form-control input'}),
                                 error_messages={"required": "Please enter password"}, )
     password2 = forms.CharField(label="Re-enter", widget=forms.PasswordInput(
-        attrs={"placeholder": "Re-Enter Password", 'autocomplete': 'new-password', 'class': 'form-control input'}),
+        attrs={"placeholder": "Confirme a senha", 'autocomplete': 'new-password', 'class': 'form-control input'}),
                                 help_text="Make sure your password contains 'small letter','capital letter','numbers' and 'symbols'",
                                 error_messages={"required": "Re-Enter password field cannot be empty"})
     username = forms.CharField(label="username", widget=forms.TextInput(
-        attrs={"placeholder": "Username", "id": "username", 'class': 'form-control input'}),
+        attrs={"placeholder": "Nome de usuário", "id": "username", 'class': 'form-control input'}),
                                validators=[validete_username])
     first_name = forms.CharField(
-        widget=forms.TextInput(attrs={"placeholder": "First Name", "required": True, 'class': 'form-control input'}),
-        error_messages={"required": "First name cannot be empty"})
+        widget=forms.TextInput(attrs={"placeholder": "Primeiro nome", "required": True, 'class': 'form-control input'}),
+        error_messages={"required": "Primeiro nome não pode ficar vazio."})
     last_name = forms.CharField(
-        widget=forms.TextInput(attrs={"placeholder": "First Name", "required": True, 'class': 'form-control input'}),
-        error_messages={"required": "Last name cannot be empty"})
+        widget=forms.TextInput(attrs={"placeholder": "Último nome", "required": True, 'class': 'form-control input'}),
+        error_messages={"required": "Último nome não pode ficar vazio."})
     email = forms.CharField(widget=forms.EmailInput(
-        attrs={"required": True, "Placeholder": "Email", 'autocomplete': 'username', 'class': 'form-control input'}))
+        attrs={"required": True, "Placeholder": "E-mail", 'autocomplete': 'username', 'class': 'form-control input'}))
 
     class Meta:
         model = User
@@ -38,9 +38,9 @@ class UserCreationForm(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
-    username = UsernameField(widget=forms.TextInput(attrs={"placeholder": "Username", 'class': 'form-control input'}))
+    username = UsernameField(widget=forms.TextInput(attrs={"placeholder": "Nome de usuário", 'class': 'form-control input'}))
     password = forms.CharField(widget=forms.PasswordInput(
-        attrs={"placeholder": "password", 'autocomplete': 'current-password', 'class': 'form-control input'}))
+        attrs={"placeholder": "Senha", 'autocomplete': 'current-password', 'class': 'form-control input'}))
 
 
 
