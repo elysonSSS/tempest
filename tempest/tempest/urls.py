@@ -25,4 +25,5 @@ urlpatterns = [
     path('',main,name='main'),
     path('home/',home,name='home'),
      path('logout/',logoutFun,name='logout'),
+
 ]

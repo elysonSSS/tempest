@@ -1,11 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
+from crispy_forms.helper import FormHelper
 from django.forms import fields
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm, PasswordChangeForm, \
     PasswordResetForm, UsernameField
 from django.core import validators
-
+from .models import SubstituicaoAula
 
 def validete_username(value):
     if len(value) <= 2:
@@ -54,4 +55,8 @@ class LoginForm(AuthenticationForm):
 
 
 
+class SubstituicaoAulaForm(forms.ModelForm):
+    class Meta:
+        model = SubstituicaoAula
+        fields = ['solicitante', 'data_hora_aula_substituida', 'substituto_nome', 'turma_afetada']
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.contrib.auth import authenticate, forms, login, logout
@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.contrib.auth.models import User
+from .forms import SubstituicaoAulaForm
 
 
 # Create your views here.
@@ -84,3 +85,15 @@ def home(reqest):
 def logoutFun(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+def criar_substituicao_aula(request):
+    if request.method == 'POST':
+        form = SubstituicaoAulaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('pagina_sucesso')
+    else:
+        form = SubstituicaoAulaForm()
+
+    return render(request, 'sua_app/home.html', {'form': form})

@@ -1,8 +1,6 @@
 from django.contrib import admin
-from .models import Representante
-from .models import Professor
+
+from .models import SubstituicaoAula
 # Register your models here.
 
-admin.site.register(Representante)
-admin.site.register(Professor)
-
+admin.site.register(SubstituicaoAula)
