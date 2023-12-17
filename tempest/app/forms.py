@@ -1,12 +1,13 @@
 from django import forms
 from django.contrib.auth.models import User
-from crispy_forms.helper import FormHelper
-from django.forms import fields
+from django.forms import fields, SelectDateWidget
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm, PasswordChangeForm, \
     PasswordResetForm, UsernameField
 from django.core import validators
 from .models import SubstituicaoAula
+from django.forms import ModelForm
+
 
 def validete_username(value):
     if len(value) <= 2:
@@ -55,8 +56,16 @@ class LoginForm(AuthenticationForm):
 
 
 
-class SubstituicaoAulaForm(forms.ModelForm):
+
+class FormSubstitua(ModelForm):
     class Meta:
         model = SubstituicaoAula
-        fields = ['solicitante', 'data_hora_aula_substituida', 'substituto_nome', 'turma_afetada']
+        fields = ["data_hora_aula_substituida", "curso_afetado", "horarios_aula", "semestre_afetado"]
+        widgets = {
+            'data_hora_aula_substituida': SelectDateWidget(),
+        }
 
+        horarios_aula = forms.MultipleChoiceField(
+            choices=SubstituicaoAula.HORARIOS_CHOICES,
+            widget=forms.CheckboxSelectMultiple,
+        )

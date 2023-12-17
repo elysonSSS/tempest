@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.contrib.auth.models import User
-from .forms import SubstituicaoAulaForm
+from .forms import FormSubstitua
 
 
 # Create your views here.
@@ -77,7 +77,7 @@ def main(reqest):
 
 def home(reqest):
     if reqest.user.is_authenticated:
-        return render(reqest, 'home.html')
+        return render(reqest, 'home.html', {'form': FormSubstitua()})
     else:
         return HttpResponseRedirect('/')
 
@@ -86,14 +86,11 @@ def logoutFun(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-
-def criar_substituicao_aula(request):
-    if request.method == 'POST':
-        form = SubstituicaoAulaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('pagina_sucesso')
+def sobre(request):
+    if request.user.is_authenticated:
+        return render(request, 'sobre.html')
     else:
-        form = SubstituicaoAulaForm()
+        return HttpResponseRedirect('/')
 
-    return render(request, 'sua_app/home.html', {'form': form})
+
+
