@@ -75,6 +75,10 @@ def main(reqest):
     loginForm = LoginForm()
     return render(reqest, 'login.html', {'userCreation': userCreation, 'loginForm': loginForm})
 
+
+def sucesso(request):
+    return render(request,'sucesso.html')
+
 @login_required
 def home(reqest):
     if reqest.user.is_authenticated:
@@ -91,6 +95,8 @@ def home(reqest):
                 substituicao_aula.save()
 
                 return redirect('sucesso/')
+            else:
+                print("ta parando aqui")
         else:
             form = FormSubstitua()
 
@@ -110,5 +116,4 @@ def sobre(request):
         return HttpResponseRedirect('/')
 
 
-def sucesso(request):
-    return render(request,'sucesso.html')
+

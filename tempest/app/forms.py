@@ -63,6 +63,7 @@ class FormSubstitua(ModelForm):
         fields = ["data_hora_aula_substituida", "curso_afetado", "horarios_aula", "semestre_afetado"]
         widgets = {
             'data_hora_aula_substituida': SelectDateWidget(),
+
         }
 
         horarios_aula = forms.MultipleChoiceField(
