@@ -10,6 +10,7 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from .forms import FormSubstitua
 from django.contrib.auth.decorators import login_required
+from .models import Curso, SubstituicaoAula, AceiteSubs
 
 
 # Create your views here.
@@ -70,37 +71,37 @@ def signin_ajax_function(request):
         return JsonResponse({"status": "Failed"})
 
 
-def main(reqest):
+def main(request):
     userCreation = UserCreationForm()
     loginForm = LoginForm()
-    return render(reqest, 'login.html', {'userCreation': userCreation, 'loginForm': loginForm})
+    return render(request, 'login.html', {'userCreation': userCreation, 'loginForm': loginForm})
 
 
 def sucesso(request):
     return render(request,'sucesso.html')
 
 @login_required
-def home(reqest):
-    if reqest.user.is_authenticated:
-        if reqest.method == 'POST':
-            form = FormSubstitua(reqest.POST)
+def home(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = FormSubstitua(request.POST)
             if form.is_valid():
                 # Crie uma instância do modelo, mas não a salve ainda
                 substituicao_aula = form.save(commit=False)
 
                 # Defina o usuário atual como solicitante
-                substituicao_aula.solicitante = reqest.user
+                substituicao_aula.solicitante = request.user
 
                 # Agora, salve a instância do modelo
                 substituicao_aula.save()
 
-                return redirect('sucesso/')
+                return redirect('sucesso')
             else:
                 print("ta parando aqui")
         else:
             form = FormSubstitua()
 
-        return render(reqest, 'home.html', {'form': FormSubstitua()})
+        return render(request, 'home.html', {'form': form})
     else:
         return HttpResponseRedirect('/')
 

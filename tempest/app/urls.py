@@ -8,5 +8,5 @@ urlpatterns = [
     #path('substitua', views.substitua, name='substitua'),
     path('sobre',views.sobre, name='sobre'),
     path('jsi18n', JavaScriptCatalog.as_view(), name='js-catlog'),
-    path('sucesso', views.sucesso, name='sucess'),
+    path('sucesso', views.sucesso, name='sucesso'),
 ]

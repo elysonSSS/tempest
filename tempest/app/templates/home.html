@@ -5,6 +5,7 @@
 <script src="{% static '/admin/js/core.js' %}"></script>
 <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
 <link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
+{{ form.media }}
 {% block title %} Solicitação {% endblock %}
 {% block content %}
 
@@ -17,7 +18,6 @@
                     <div class="card-header bg-white border-0">
                         <h1 class="text-success text-center">Solicite a substituição</h1>
                     </div>
-                    {{ form.media }}
                     {{ form.as_p }}
                     <div class="card-footer p-0 pt-3 bg-white border-0">
                         <button type="submit" class="btn btn-success col-12">Solicitar</button>

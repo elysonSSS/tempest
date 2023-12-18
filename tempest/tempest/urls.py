@@ -14,5 +14,5 @@ urlpatterns = [
     #path('substitua', substitua, name='substitua'),
     path('sobre',sobre, name='sobre'),
     path('jsi18n', JavaScriptCatalog.as_view(), name='js-catlog'),
-    path('sucesso', sucesso, name='sucesso'),
+    path('sucesso',sucesso, name='sucesso'),
 ]
