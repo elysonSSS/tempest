@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm, PasswordChangeForm, \
     PasswordResetForm, UsernameField
 from django.core import validators
-from .models import SubstituicaoAula
+from .models import SubstituicaoAula, Curso
 from django.forms import ModelForm
 
 
@@ -58,6 +58,11 @@ class LoginForm(AuthenticationForm):
 
 
 class FormSubstitua(ModelForm):
+    horarios_aula = forms.MultipleChoiceField(
+        choices=SubstituicaoAula.HORARIOS_CHOICES.items(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+    )
     class Meta:
         model = SubstituicaoAula
         fields = ["data_hora_aula_substituida", "curso_afetado", "horarios_aula", "semestre_afetado"]
@@ -66,8 +71,4 @@ class FormSubstitua(ModelForm):
             'horarios_aula': forms.CheckboxSelectMultiple(),
         }
 
-        horarios_aula = forms.MultipleChoiceField(
-            choices=SubstituicaoAula.HORARIOS_CHOICES,
-            widget=forms.CheckboxSelectMultiple,
-            required=False,
-        )
+

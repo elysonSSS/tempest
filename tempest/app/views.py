@@ -86,7 +86,6 @@ def home(request):
         if request.method == 'POST':
             form = FormSubstitua(request.POST)
             if form.is_valid():
-                # Crie uma instância do modelo, mas não a salve ainda
                 substituicao_aula = form.save(commit=False)
 
                 # Defina o usuário atual como solicitante

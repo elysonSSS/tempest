@@ -38,7 +38,7 @@ class SubstituicaoAula(models.Model):
     solicitante = models.ForeignKey(User, on_delete=models.CASCADE, related_name='aulas_solicitadas', verbose_name='Solicitante')
     data_hora_solicitacao = models.DateTimeField(default=timezone.now)
     data_hora_aula_substituida = models.DateField(verbose_name='Data da Aula a ser Substituída')
-    horarios_aula =  models.CharField(max_length=10, choices=HORARIOS_CHOICES, blank=True, null=True)
+    horarios_aula = models.CharField(max_length=20, blank=True, null=True) 
     curso_afetado = models.ForeignKey(Curso, on_delete=models.CASCADE, verbose_name='Curso Afetado')
     semestre_afetado = models.CharField(max_length=60,choices=SEMESTRES_CHOICES)
 
