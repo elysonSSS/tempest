@@ -1,0 +1,20 @@
+{% extends 'core.html' %}
+{% load static %}
+<script src="{% url 'js-catlog' %}"></script>
+<script src="{% static '/admin/js/core.js' %}"></script>
+<link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
+{% block title %} Sucesso {% endblock %}
+{% block content %}
+
+<div class="alert alert-success d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+  <div>
+    An example success alert with an icon
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eaQyAEXpE9c5JtvFeIM7bRJS0B6n0TOV9PQsPVlTf3ahBBPLj8S7fsyRV2IVgN6C" crossorigin="anonymous"></script>
+
+{% endblock content %}

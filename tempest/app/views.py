@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from .forms import FormSubstitua
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -74,9 +75,25 @@ def main(reqest):
     loginForm = LoginForm()
     return render(reqest, 'login.html', {'userCreation': userCreation, 'loginForm': loginForm})
 
-
+@login_required
 def home(reqest):
     if reqest.user.is_authenticated:
+        if reqest.method == 'POST':
+            form = FormSubstitua(reqest.POST)
+            if form.is_valid():
+                # Crie uma instância do modelo, mas não a salve ainda
+                substituicao_aula = form.save(commit=False)
+
+                # Defina o usuário atual como solicitante
+                substituicao_aula.solicitante = reqest.user
+
+                # Agora, salve a instância do modelo
+                substituicao_aula.save()
+
+                return redirect('sucesso/')
+        else:
+            form = FormSubstitua()
+
         return render(reqest, 'home.html', {'form': FormSubstitua()})
     else:
         return HttpResponseRedirect('/')
@@ -93,4 +110,5 @@ def sobre(request):
         return HttpResponseRedirect('/')
 
 
-
+def sucesso(request):
+    return render(request,'sucesso.html')
